@@ -6,7 +6,7 @@ export default function Home()
   return (
     <div className={styles.container}>
       <h1> Welcome To Yap! </h1>
-      <button> Sign In </button>
+      <button> Log In </button>
       <Link href={"feed"}> <button> View Feed </button> </Link>
     </div>
   );

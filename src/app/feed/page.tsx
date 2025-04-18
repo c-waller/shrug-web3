@@ -1,11 +1,13 @@
 import styles from "./feed.module.css";
 import Link from "next/link";
+import NavBar from "../components/NavBar";
 
 export default function Feed() 
 {
   return (
     <div className={styles.container}>
-      <h1> Feed </h1>
+        <NavBar />
+        <p> content here </p>
     </div>
   );
 }
