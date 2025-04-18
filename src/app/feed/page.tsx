@@ -1,3 +1,5 @@
+// feed page
+
 import styles from "./feed.module.css";
 import Link from "next/link";
 import NavBar from "../components/NavBar";

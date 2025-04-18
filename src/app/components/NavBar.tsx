@@ -1,7 +1,8 @@
+// stylized navbar component
+
 import styles from "./navbar.module.css";
-import Image from "next/image";
 import Link from "next/link";
-import BlackButton from "./BlackButton";
+import MainButton from "./MainButton";
 
 export default function NavBar() 
 {
@@ -14,8 +15,15 @@ export default function NavBar()
         </Link>
 
         <nav className={styles.nav}> 
-            <BlackButton> Make a post </BlackButton>
-            <BlackButton> Log Out </BlackButton>
+            <Link href="post">
+                <MainButton> Make a post </MainButton>
+            </Link>
+            
+            <Link href="/">
+                <MainButton className={styles.logOutButton}> 
+                    Log Out 
+                </MainButton>
+            </Link>
         </nav>
     </header>
     )
