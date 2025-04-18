@@ -1,5 +1,3 @@
-/* styles for feed page */
-
 .container 
 {
   display: flex;
@@ -8,19 +6,4 @@
   justify-content: center;
   min-height: 100vh;
   width: 100%;
-}
-
-.latest
-{
-  padding-bottom: 10px;
-}
-
-.main
-{
-  padding-top: 80px;
-}
-
-.shrug
-{
-  padding-top: 5px;
 }

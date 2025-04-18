@@ -15,8 +15,8 @@ export default function NavBar()
         </Link>
 
         <nav className={styles.nav}> 
-            <Link href="post">
-                <MainButton> Make a post </MainButton>
+            <Link href="new-shrug">
+                <MainButton> Write a shrug </MainButton>
             </Link>
             
             <Link href="/">
