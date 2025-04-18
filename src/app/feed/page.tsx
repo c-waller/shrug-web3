@@ -6,8 +6,7 @@ export default function Feed()
 {
   return (
     <div className={styles.container}>
-        <NavBar />
-        <p> content here </p>
+      <NavBar />
     </div>
   );
 }
