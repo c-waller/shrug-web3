@@ -13,14 +13,41 @@
 .latest
 {
   padding-bottom: 10px;
+  padding-top: 10px;
+  background: #22C1C3;
+  background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
+
+/* .latest:hover
+{
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  cursor: pointer;
+  
+} */
 
 .main
 {
-  padding-top: 80px;
+  padding-top: 20px;
 }
 
 .shrug
 {
-  padding-top: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: solid 1.5px #e9e9e9;
+  width: 700px;
+}
+
+.metadata
+{
+  color: #a8a8a8;
+}
+
+.description
+{
+  line-height: 1.5;
 }
