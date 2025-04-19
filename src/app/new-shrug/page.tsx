@@ -6,7 +6,9 @@ export default function NewShrug()
     return(
         <div className={styles.container}>
             <NavBar />
-            <p> This is where you write shrugs </p>
+            <main className={styles.main}>
+                <p> This is where you write shrugs </p>
+            </main>
         </div>
     )
 }
