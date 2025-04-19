@@ -21,7 +21,7 @@ export default function NavBar()
             
             <Link href="/">
                 <MainButton className={styles.logOutButton}> 
-                    Log Out 
+                    Home
                 </MainButton>
             </Link>
         </nav>

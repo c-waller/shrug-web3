@@ -86,7 +86,7 @@ export default function Feed() {
           </article>
         ))}
         <div className={styles.footer}>
-          <p className={styles.footerText}> ← older </p>
+          <p className={styles.footerText}> older </p>
           <p className={styles.footerText}> 1/2 </p>
         </div>
       </main>
