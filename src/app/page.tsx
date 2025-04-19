@@ -10,7 +10,7 @@ export default function Home()
     <div className={styles.container}>
       <h1> ¯\_(ツ)_/¯ </h1>
       <MainButton> Sign Up </MainButton>
-      <Link href={"feed"}> <MainButton className={styles.signInButton}> Sign In </MainButton> </Link>
+      <Link href={"/feed"}> <MainButton className={styles.signInButton}> Sign In </MainButton> </Link>
     </div>
   );
 }

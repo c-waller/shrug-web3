@@ -15,7 +15,7 @@ export default function NavBar()
         </Link>
 
         <nav className={styles.nav}> 
-            <Link href="new-shrug">
+            <Link href="/new-shrug">
                 <MainButton> Write a shrug </MainButton>
             </Link>
             

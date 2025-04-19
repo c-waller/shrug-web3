@@ -4,7 +4,7 @@ import styles from "./feed.module.css";
 import NavBar from "../components/NavBar";
 import React from "react";
 
-// example posts
+// examples
 const shrugs = [
   {
     title: "Shrugging Through It.",
