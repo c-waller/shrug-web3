@@ -39,7 +39,8 @@
 .description
 {
   line-height: 1.5;
-  color: #363737;;
+  color: #363737;
+  cursor: text;
 }
 
 .title
