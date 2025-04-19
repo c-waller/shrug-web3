@@ -8,7 +8,7 @@ export default function Home()
 {
   return (
     <div className={styles.container}>
-      <h1> ( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°) </h1>
+      <h1> ¯\_(ツ)_/¯ </h1>
       <MainButton> Sign Up </MainButton>
       <Link href={"feed"}> <MainButton className={styles.signInButton}> Sign In </MainButton> </Link>
     </div>
