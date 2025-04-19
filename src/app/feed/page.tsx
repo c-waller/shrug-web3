@@ -77,14 +77,11 @@ export default function Feed() {
         {shrugs.map((shrug, index) => (
           <article className={styles.shrug} key={index}>
             <h2>{shrug.title}</h2>
-            <p className={styles.description}>
+            <div className={styles.description}>
               {shrug.content.split("\n").map((line, i) => (
-                <React.Fragment key={i}>
-                  {line}
-                  <br />
-                </React.Fragment>
+                <p key={i}>{line}</p>
               ))}
-            </p>
+            </div>
             <p className={styles.metadata}> {shrug.date} • {shrug.id} </p>
           </article>
         ))}

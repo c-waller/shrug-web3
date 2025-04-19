@@ -37,6 +37,8 @@
   /* background-color: red; */
   font-size: 20px;
   width: 720px;
+  outline: none;
+  caret-color: #363737;
 }
 
 
