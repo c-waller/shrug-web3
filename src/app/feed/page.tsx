@@ -76,7 +76,7 @@ export default function Feed() {
         <h1 className={styles.latest}> #main </h1>
         {shrugs.map((shrug, index) => (
           <article className={styles.shrug} key={index}>
-            <h2>{shrug.title}</h2>
+            <h2 className={styles.title}>{shrug.title}</h2>
             <div className={styles.description}>
               {shrug.content.split("\n").map((line, i) => (
                 <p key={i}>{line}</p>
@@ -85,6 +85,10 @@ export default function Feed() {
             <p className={styles.metadata}> {shrug.date} </p>
           </article>
         ))}
+        <div className={styles.footer}>
+          <p className={styles.footerText}> ← older </p>
+          <p className={styles.footerText}> 1/2 </p>
+        </div>
       </main>
     </div>
   );
