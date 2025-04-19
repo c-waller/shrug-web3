@@ -82,7 +82,7 @@ export default function Feed() {
                 <p key={i}>{line}</p>
               ))}
             </div>
-            <p className={styles.metadata}> {shrug.date} • {shrug.id} </p>
+            <p className={styles.metadata}> {shrug.date} </p>
           </article>
         ))}
       </main>
