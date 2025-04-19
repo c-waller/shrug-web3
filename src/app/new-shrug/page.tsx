@@ -7,7 +7,14 @@ export default function NewShrug()
         <div className={styles.container}>
             <NavBar />
             <main className={styles.main}>
-                <p> This is where you write shrugs </p>
+                <form className={styles.form}>
+                    <div>
+                        <input className={styles.title} type="text" placeholder="Title"/>
+                    </div>
+                    <div>
+                        <input className={styles.description} type="text" placeholder="Say something to #main."/>
+                    </div>
+                </form>
             </main>
         </div>
     )
