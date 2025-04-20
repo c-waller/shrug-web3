@@ -27,7 +27,6 @@
   font-weight: bold;
   resize: none;
   overflow: hidden;
-  /* background-color: red; */
   height: 65px;
 }
 
@@ -45,8 +44,8 @@
   caret-color: #363737;
   resize: none;
   line-height: 1.5;
-  /* background-color: red; */
   height: 30px;
+  overflow: hidden;
 }
 
 .metadata
@@ -54,3 +53,10 @@
   color: #a8a8a8;
 }
 
+.postButtonWrapper
+{
+  padding-top: 40px;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 80px;
+}

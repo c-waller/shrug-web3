@@ -68,7 +68,8 @@ const shrugs = [
   }
 ];
 
-export default function Feed() {
+export default function Feed() 
+{
   return (
     <div className={styles.container}>
       <NavBar />
@@ -86,9 +87,9 @@ export default function Feed() {
           </article>
         ))}
         <div className={styles.footer}>
-          <p className={styles.footerText}> older </p>
+          <p className={styles.footerText}> &lt;&lt; older </p>
           <p className={styles.footerText}> 2/3 </p>
-          <p className={styles.footerText}> newer </p>
+          <p className={styles.footerText}> newer &gt;&gt; </p>
         </div>
       </main>
     </div>

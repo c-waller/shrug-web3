@@ -34,6 +34,9 @@ export default function NewShrug()
                     </div>
                     <p className={styles.metadata}> Apr 18, 2025 </p>
                 </form>
+                <div className={styles.postButtonWrapper}>
+                    <MainButton> Post </MainButton>
+                </div>
             </main>
         </div>
     );
