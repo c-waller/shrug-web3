@@ -82,14 +82,15 @@ export default function Feed()
               {shrug.content.split("\n").map((line, i) => (
                 <p key={i}>{line}</p>
               ))}
+            {/* <img src="https://media1.tenor.com/m/aACGz-xUHLUAAAAd/drake-drizzy.gif"></img> */}
             </div>
             <p className={styles.metadata}> {shrug.date} </p>
           </article>
         ))}
         <div className={styles.footer}>
-          <p className={styles.footerText}> &lt;&lt; older </p>
+          <p className={styles.footerText}> &lt;&lt; newer </p>
           <p className={styles.footerText}> 2/3 </p>
-          <p className={styles.footerText}> newer &gt;&gt; </p>
+          <p className={styles.footerText}> older &gt;&gt; </p>
         </div>
       </main>
     </div>

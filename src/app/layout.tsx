@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Shrug",
-  description: "Anonymous message board",
+  description: "A quiet corner of the internet for whatever's on your mind."
 };
 
 export default function RootLayout({
