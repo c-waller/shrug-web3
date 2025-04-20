@@ -10,7 +10,12 @@
   height: 100vh;
 }
 
-.signInButton
+.title
 {
-  width: 100px !important;
+  color: #363737; 
+}
+
+.tagline
+{
+  padding-bottom: 20px;
 }
