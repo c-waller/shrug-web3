@@ -51,7 +51,7 @@
 .footer
 {
   display:flex;
-  gap: 292px;
+  justify-content: space-between;
 }
 
 .footerText
