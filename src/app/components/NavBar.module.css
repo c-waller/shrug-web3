@@ -1,0 +1,44 @@
+/* styles for navbar component */
+
+.header 
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    padding: 15px;
+    width: 100%;
+    top: 0;
+    border-bottom: solid 1.5px #e9e9e9;
+    background-color: white;
+}
+
+.shrug
+{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: #363737;
+    user-select: none;
+    font-size: 15px;
+}
+
+.nav
+{
+    display: flex;
+    gap: 20px;
+    padding-right: 20px;
+}
+
+.logOutButton
+{
+    background-color: #ffffff !important;
+    color: #363737 !important;
+    border-color: white !important;
+}
+
+.logOutButton:hover
+{
+    background-color: #e9e9e9 !important;
+}

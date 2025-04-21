@@ -1,0 +1,24 @@
+/* styles for main button component */
+
+.mainButton
+{
+    text-decoration: none;
+    padding: 14px 25px;
+    font-size: 13.5px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 450;
+    background-color: black;
+    color: white;
+    transition: 0.5s;
+}
+
+.mainButton:hover
+{
+    cursor: pointer;
+}
+
+.mainButton:active 
+{
+    transform: scale(0.95);
+}
