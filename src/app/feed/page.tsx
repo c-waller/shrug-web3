@@ -2,7 +2,7 @@
 
 import styles from "./feed.module.css";
 import NavBar from "../components/NavBar";
-import React from "react";
+import TopicTitle from "../components/TopicTitle";
 
 // these are examples!!!!!!!!!
 const shrugs = [
@@ -58,14 +58,14 @@ const shrugs = [
   },
   {
     title: "",
-    content: "i dont really have anything to say, just felt like existing here for a second",
+    content: "There's a famous Japanese proverb that says, \"if you find yourself on the wrong train, get off at the next station.\" It doesn't matter if you have to pay a high cost for a new ticket. It doesn't matter if you're embarrassed to have made a mistake. Every price you pay to fix the situation is worth not going the wrong way, and starting to go the right way. Not having the courage to get off means going to the wrong destination. This, of course, isn't about trains. It's about life.",
     date: "Apr 18, 2025",
     nick: "thethinker",
     id: "t2wqx-mk45n"
   },
   {
-    title: "Dream Log 04.18.25",
-    content: "I was riding a bike through the clouds, racing a bird that sounded like it was beatboxing. Woke up and my legs hurt.",
+    title: "",
+    content: "I was riding a bike through the clouds, racing a bird that sounded like it was beatboxing. woke up and my legs hurt.",
     date: "Apr 18, 2025",
     nick: "someone",
     id: "r5bze-pc60v"
@@ -85,7 +85,7 @@ export default function Feed()
     <div className={styles.container}>
       <NavBar />
       <main className={styles.main}> 
-        <h1 className={styles.latest}> #main </h1>
+        <TopicTitle> #main </TopicTitle>
         {shrugs.map((shrug, index) => (
           <article className={styles.shrug} key={index}>
             <h2 className={styles.title}>{shrug.title}</h2>
@@ -93,9 +93,11 @@ export default function Feed()
               {shrug.content.split("\n").map((line, i) => (
                 <p key={i}>{line}</p>
               ))}
-            {shrug.img ? <img src= {shrug.img}></img>: <></>}
+              {shrug.img ? <img src= {shrug.img}></img> : <></>}
             </div>
-            <p className={styles.metadata}> {shrug.date} · {shrug.nick} </p>
+            <div className={styles.metadataContainer}>
+              <p> {shrug.date} · {shrug.nick} </p>
+            </div>
           </article>
         ))}
         <div className={styles.footer}>
