@@ -10,10 +10,10 @@ export default function NotFound()
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}> (&times;_&times;；) 404 </h1>
-      <p className={styles.tagline}> <span className={styles.route}>{pathname}</span> doesn't exist. Was it ever really here? </p>
+      <h1 className={styles.title}> ¯\_(ツ)_/¯ Shrug </h1>
+      <p className={styles.tagline}> <strong> 404: </strong> The requested URL <span className={styles.route}>{pathname}</span> doesn't exist. </p>
       <Link href="/feed">
-        <MainButton> Home </MainButton>
+        <MainButton> To safety </MainButton>
       </Link>
     </div>
   )

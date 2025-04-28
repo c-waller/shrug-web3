@@ -1,7 +1,6 @@
 // feed page
 
 import styles from "./feed.module.css";
-import NavBar from "../components/NavBar";
 import MainTopicTitle from "../components/MainTopicTitle";
 
 // these are examples!!!!!!!!!
@@ -82,7 +81,6 @@ export default function Feed()
 {
   return (
     <div className={styles.container}>
-      <NavBar />
       <main className={styles.main}> 
         <MainTopicTitle />
         {shrugs.map((shrug, index) => (

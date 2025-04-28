@@ -1,7 +1,6 @@
 'use client';
 
 import styles from "./new-shrug.module.css";
-import NavBar from "../components/NavBar";
 import MainButton from "../components/MainButton";
 
 export default function NewShrug() 
@@ -15,7 +14,6 @@ export default function NewShrug()
     
     return (
         <div className={styles.container}>
-            <NavBar />
             <main className={styles.main}>
                 <form className={styles.form}>
                     <div>
