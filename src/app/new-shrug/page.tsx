@@ -12,7 +12,7 @@ export default function NewShrug()
         element.style.height = "5px";
         element.style.height = `${element.scrollHeight}px`;
     }
-
+    
     return (
         <div className={styles.container}>
             <NavBar />
@@ -32,7 +32,7 @@ export default function NewShrug()
                             onInput={autoGrow}
                         />
                     </div>
-                    <p className={styles.metadata}> Apr 18, 2025 </p>
+                    <p className={styles.metadata}> just now · someone </p>
                 </form>
                 <div className={styles.postButtonWrapper}>
                     <MainButton> Post </MainButton>

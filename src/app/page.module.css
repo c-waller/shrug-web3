@@ -12,10 +12,16 @@
 
 .title
 {
+  user-select: none;
   color: #363737; 
 }
 
 .tagline
 {
   padding-bottom: 20px;
+}
+
+.route
+{
+  color: #A9A9A9;
 }

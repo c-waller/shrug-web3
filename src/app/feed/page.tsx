@@ -2,79 +2,78 @@
 
 import styles from "./feed.module.css";
 import NavBar from "../components/NavBar";
-import TopicTitle from "../components/TopicTitle";
+import MainTopicTitle from "../components/MainTopicTitle";
 
 // these are examples!!!!!!!!!
 const shrugs = [
   {
-    title: "",
-    content: "",
-    img: "https://media1.tenor.com/m/aACGz-xUHLUAAAAd/drake-drizzy.gif",
+    title: "finals week soon",
+    content: "its over for me",
     nick: "someone",
-    date: "Apr 18, 2025",
+    date: "3 hours ago",
     id: "q7fkp-hu24a"
   },
   {
-    title: "",
+    title: "Mind empty",
     content: "No thoughts.",
-    date: "Apr 18, 2025",
+    date: "6 hours ago",
     nick: "someone",
     id: "x3nvt-kg91z"
   },
   {
-    title: "",
-    content: "this website sucks",
-    date: "Apr 18, 2025",
+    title: "A thought",
+    content: "Does elon musk tell people he's african american?",
+    date: "9 hours ago",
     nick: "eli",
     id: "m8czd-wl56e"
   },
   {
     title: "Note To Self",
     content: "Drink some water. Stand up. Breathe. You're doing fine.",
-    date: "Apr 18, 2025",
+    date: "14 hours ago",
     nick: "someone",
     id: "a1xrf-vn83y"
   },
   {
-    title: "",
+    title: "Bored",
     content: `console.log("maybe this will work");\n// it didn't`,
-    date: "Apr 18, 2025",
+    date: "15 hours ago",
     nick: "x",
     id: "z9hdp-rm70q"
   },
   {
-    title: "observation",
+    title: "Observation",
     content: "People who walk fast in airports probably run entire empires",
-    date: "Apr 18, 2025",
+    date: "2 hours ago",
     nick: "someone",
     id: "k4tjm-uz33c"
   },
   {
     title: "I Miss Old Youtube",
     content: "bring back the weird stuff from 2009!!! i wanna see a potato singing again!!",
-    date: "Apr 18, 2025",
+    date: "22 hours ago",
     nick: "someone",
     id: "v6gsl-yt28b"
   },
   {
-    title: "",
+    title: "It's never too late",
     content: "There's a famous Japanese proverb that says, \"if you find yourself on the wrong train, get off at the next station.\" It doesn't matter if you have to pay a high cost for a new ticket. It doesn't matter if you're embarrassed to have made a mistake. Every price you pay to fix the situation is worth not going the wrong way, and starting to go the right way. Not having the courage to get off means going to the wrong destination. This, of course, isn't about trains. It's about life.",
-    date: "Apr 18, 2025",
+    date: "1 hour ago",
     nick: "thethinker",
     id: "t2wqx-mk45n"
   },
   {
-    title: "",
+    title: "Dream log",
     content: "I was riding a bike through the clouds, racing a bird that sounded like it was beatboxing. woke up and my legs hurt.",
-    date: "Apr 18, 2025",
+    date: "8 hours ago",
     nick: "someone",
     id: "r5bze-pc60v"
   },
   {
-    title: "i still haven't found an internship",
+    title: "I still haven't found an internship",
     content: "am i cooked?",
-    date: "Apr 18, 2025",
-    nick: "notacsmajor",
+    date: "12 hours ago",
+    nick: "someone",
     id: "n0yjd-xq17s"
   }
 ];
@@ -85,7 +84,7 @@ export default function Feed()
     <div className={styles.container}>
       <NavBar />
       <main className={styles.main}> 
-        <TopicTitle> #main </TopicTitle>
+        <MainTopicTitle />
         {shrugs.map((shrug, index) => (
           <article className={styles.shrug} key={index}>
             <h2 className={styles.title}>{shrug.title}</h2>
@@ -93,7 +92,6 @@ export default function Feed()
               {shrug.content.split("\n").map((line, i) => (
                 <p key={i}>{line}</p>
               ))}
-              {shrug.img ? <img src= {shrug.img}></img> : <></>}
             </div>
             <div className={styles.metadataContainer}>
               <p> {shrug.date} · {shrug.nick} </p>
