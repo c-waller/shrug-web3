@@ -23,7 +23,6 @@ export default function Home()
       console.log("Connected wallet:", connected.address);
       router.push("/feed");
     }
-
     else
     {
       alert("MetaMask is not installed.");

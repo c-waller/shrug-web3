@@ -28,7 +28,7 @@ export default function NewShrug()
                         <div>
                             <textarea
                                 className={styles.description}
-                                placeholder="Say something to #main"
+                                placeholder="Say something to #feed"
                                 onInput={autoGrow}
                             />
                         </div>

@@ -35,9 +35,6 @@ export default function RequireWallet({ children }: RequireWalletProps)
         }
         setLoading(false);
     }
-
     useEffect(() => { checkWallet() });
-
-    if (loading || !walletConnected ) return null;
-    return <>{children}</>;
+    return (loading || !walletConnected ) ? null: <> { children } </>;
 }
