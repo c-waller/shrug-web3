@@ -14,6 +14,9 @@
 {
   user-select: none;
   color: #363737; 
+  cursor: default;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .tagline
