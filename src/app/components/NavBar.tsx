@@ -1,6 +1,6 @@
 // stylized navbar component
 
-import styles from "./NavBar.module.css";
+import styles from "./styles/NavBar.module.css";
 import Link from "next/link";
 import MainButton from "./MainButton";
 

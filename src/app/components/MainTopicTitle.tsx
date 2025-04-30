@@ -1,4 +1,6 @@
-import styles from "./MainTopicTitle.module.css";
+// animated gradient #feed component
+
+import styles from "./styles/MainTopicTitle.module.css";
 
 export default function MainTopicTitle()
 {

@@ -2,6 +2,7 @@
 
 import styles from "./feed.module.css";
 import MainTopicTitle from "../components/MainTopicTitle";
+import RequireWallet from "../components/RequireWallet";
 
 // these are examples!!!!!!!!!
 const shrugs = [
@@ -80,28 +81,30 @@ const shrugs = [
 export default function Feed() 
 {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}> 
-        <MainTopicTitle />
-        {shrugs.map((shrug, index) => (
-          <article className={styles.shrug} key={index}>
-            <h2 className={styles.title}>{shrug.title}</h2>
-            <div className={styles.description}>
-              {shrug.content.split("\n").map((line, i) => (
-                <p key={i}>{line}</p>
-              ))}
-            </div>
-            <div className={styles.metadataContainer}>
-              <p> {shrug.date} · {shrug.nick} </p>
-            </div>
-          </article>
-        ))}
-        <div className={styles.footer}>
-          <p className={styles.footerText}> &lt;&lt; newer </p>
-          <p className={styles.footerText}> 2/3 </p>
-          <p className={styles.footerText}> older &gt;&gt; </p>
-        </div>
-      </main>
-    </div>
+    <RequireWallet>
+      <div className={styles.container}>
+        <main className={styles.main}> 
+          <MainTopicTitle />
+          {shrugs.map((shrug, index) => (
+            <article className={styles.shrug} key={index}>
+              <h2 className={styles.title}>{shrug.title}</h2>
+              <div className={styles.description}>
+                {shrug.content.split("\n").map((line, i) => (
+                  <p key={i}>{line}</p>
+                ))}
+              </div>
+              <div className={styles.metadataContainer}>
+                <p> {shrug.date} · {shrug.nick} </p>
+              </div>
+            </article>
+          ))}
+          <div className={styles.footer}>
+            <p className={styles.footerText}> &lt;&lt; newer </p>
+            <p className={styles.footerText}> 2/3 </p>
+            <p className={styles.footerText}> older &gt;&gt; </p>
+          </div>
+        </main>
+      </div>
+    </RequireWallet>
   );
 }

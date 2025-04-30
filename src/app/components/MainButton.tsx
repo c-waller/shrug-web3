@@ -1,6 +1,6 @@
 // stylized button component
 
-import styles from './MainButton.module.css';
+import styles from './styles/MainButton.module.css';
 
 type MainButtonProps = 
 {

@@ -1,22 +1,24 @@
+// helper function for wallet authentication
+
 import { BrowserProvider } from "ethers";
 
 export async function connectWallet() 
 {
-    if (typeof window.ethereum === "undefined") 
+    if (typeof window.ethereum === "undefined") // meta mask not installed
     {
-      console.log("MetaMask not installed");
       return null;
     }
+
     try 
     {
       const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
       const provider = new BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
       return { signer, address: accounts[0] };
-    } 
-    catch (err) 
+    }
+
+    catch (err) // wallet not connected
     {
-      console.error("Wallet connection error:", err);
       return null;
     }
 }
