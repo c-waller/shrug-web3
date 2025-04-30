@@ -6,13 +6,18 @@ type MainButtonProps =
 {
     children: React.ReactNode;
     className?: string;
-}
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
+};
 
-export default function MainButton({children, className}: MainButtonProps)
+export default function MainButton({ children, className, onClick }: MainButtonProps) 
 {
-    return(
-        <button className={`${styles.mainButton} ${className || ""}`} type="button">
+    return (
+        <button
+            className={`${styles.mainButton} ${className || ""}`}
+            type="button"
+            onClick={onClick}
+        >
             {children}
         </button>
-    )    
+    );
 }
