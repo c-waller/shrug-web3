@@ -1,6 +1,7 @@
 // helper function for wallet authentication
 
 import { BrowserProvider } from "ethers";
+import { getSigner } from "./getSigner";
 
 export async function connectWallet() 
 {
@@ -12,8 +13,7 @@ export async function connectWallet()
     try 
     {
       const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-      const provider = new BrowserProvider(window.ethereum);
-      const signer = await provider.getSigner();
+      const signer = await getSigner();
       return { signer, address: accounts[0] };
     }
 

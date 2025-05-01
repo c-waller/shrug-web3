@@ -100,7 +100,7 @@ export default function NewShrug()
                 ref={contentRef}
               />
             </div>
-            <p className={styles.metadata}> just now · someone </p>
+            <p className={styles.metadata}> less than a minute ago · someone </p>
           </form>
           <div className={styles.postButtonWrapper}>
             <MainButton onClick={handlePost}>

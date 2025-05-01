@@ -11,15 +11,19 @@
 .main
 {
   padding-top: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .shrug
 {
-  padding-top: 15px;
-  padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  padding-bottom: 40px;
   border-bottom: solid 1.5px #e2e2e2;
+  gap: 15px;
   width: 700px;
-  cursor: pointer;
 }
 
 .metadataContainer
@@ -27,6 +31,12 @@
   display: flex;
   justify-content: space-between;
   color: #a8a8a8;
+}
+
+.metadata
+{
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .description
@@ -39,6 +49,13 @@
 .title
 {
   color: #363737;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.spacer
+{
+  padding-bottom: 60px;
 }
 
 .footer

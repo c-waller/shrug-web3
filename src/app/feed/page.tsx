@@ -1,108 +1,116 @@
-// feed page
+'use client';
 
 import styles from "./feed.module.css";
-import MainTopicTitle from "../components/MainTopicTitle";
+import FeedTag from "../components/FeedTag";
 import RequireWallet from "../components/RequireWallet";
+import shrugFeedABI from "../lib/shrugFeedABI.json";
+import { getSigner } from "../lib/getSigner";
+import { useEffect, useState } from "react";
+import { ethers } from "ethers";
+import { formatDistanceToNow } from "date-fns";
 
-// these are examples!!!!!!!!!
-const shrugs = [
-  {
-    title: "finals week soon",
-    content: "its over for me",
-    nick: "someone",
-    date: "3 hours ago",
-    id: "q7fkp-hu24a"
-  },
-  {
-    title: "Mind empty",
-    content: "No thoughts.",
-    date: "6 hours ago",
-    nick: "someone",
-    id: "x3nvt-kg91z"
-  },
-  {
-    title: "A thought",
-    content: "Does elon musk tell people he's african american?",
-    date: "9 hours ago",
-    nick: "eli",
-    id: "m8czd-wl56e"
-  },
-  {
-    title: "Note To Self",
-    content: "Drink some water. Stand up. Breathe. You're doing fine.",
-    date: "14 hours ago",
-    nick: "someone",
-    id: "a1xrf-vn83y"
-  },
-  {
-    title: "Bored",
-    content: `console.log("maybe this will work");\n// it didn't`,
-    date: "15 hours ago",
-    nick: "x",
-    id: "z9hdp-rm70q"
-  },
-  {
-    title: "Observation",
-    content: "People who walk fast in airports probably run entire empires",
-    date: "2 hours ago",
-    nick: "someone",
-    id: "k4tjm-uz33c"
-  },
-  {
-    title: "I Miss Old Youtube",
-    content: "bring back the weird stuff from 2009!!! i wanna see a potato singing again!!",
-    date: "22 hours ago",
-    nick: "someone",
-    id: "v6gsl-yt28b"
-  },
-  {
-    title: "It's never too late",
-    content: "There's a famous Japanese proverb that says, \"if you find yourself on the wrong train, get off at the next station.\" It doesn't matter if you have to pay a high cost for a new ticket. It doesn't matter if you're embarrassed to have made a mistake. Every price you pay to fix the situation is worth not going the wrong way, and starting to go the right way. Not having the courage to get off means going to the wrong destination. This, of course, isn't about trains. It's about life.",
-    date: "1 hour ago",
-    nick: "thethinker",
-    id: "t2wqx-mk45n"
-  },
-  {
-    title: "Dream log",
-    content: "I was riding a bike through the clouds, racing a bird that sounded like it was beatboxing. woke up and my legs hurt.",
-    date: "8 hours ago",
-    nick: "someone",
-    id: "r5bze-pc60v"
-  },
-  {
-    title: "I still haven't found an internship",
-    content: "am i cooked?",
-    date: "12 hours ago",
-    nick: "someone",
-    id: "n0yjd-xq17s"
-  }
-];
+const CONTRACT = "0x110b3D933766E8D2518499e146477526241f927E";
+const GATEWAY = process.env.NEXT_PUBLIC_GATEWAY_URL;
+
+type Shrug = 
+{
+  title: string;
+  content: string;
+  timestamp: number;
+  cid: string;
+};
 
 export default function Feed() 
 {
+  const [posts, setPosts] = useState<Shrug[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchPosts() 
+    {
+      try 
+      {
+        const signer = await getSigner();
+        const contract = new ethers.Contract(CONTRACT, shrugFeedABI, signer);
+        const postList = await contract.getAllPosts();
+
+        if (postList.length === 0) // no posts to display
+        {
+          setPosts([]);
+          setLoading(false);
+          return;
+        }
+
+        // grab last 10 posts (newest first)
+        const last10 = [...postList.slice(-10)].reverse();
+
+        const results = await Promise.all(
+          last10.map(async (post: any) => {
+            try 
+            {
+              const res = await fetch(`https://${GATEWAY}/ipfs/${post.cid}`);
+              const json = await res.json();
+              return {
+                title: json.title,
+                content: json.content,
+                timestamp: Number(post.timestamp),
+                cid: post.cid,
+              };
+            } 
+            catch (err) 
+            {
+              console.warn("Failed to fetch CID:", post.cid);
+              return {
+                title: "Unavailable",
+                content: "This post is no longer accessible.",
+                timestamp: Number(post.timestamp),
+                cid: post.cid,
+              };
+            }
+          })
+        );
+        setPosts(results.filter(Boolean) as Shrug[]);
+      } 
+      catch (err) 
+      {
+        console.error("Error loading posts:", err);
+      } 
+      finally 
+      {
+        setLoading(false);
+      }
+    }
+    fetchPosts();
+  }, []);
+
+  if (loading) 
+  {
+    return (
+      <RequireWallet>
+        <p className={styles.loading}> Loading posts... </p>
+      </RequireWallet>
+    );
+  }
+
   return (
     <RequireWallet>
       <div className={styles.container}>
-        <main className={styles.main}> 
-          <MainTopicTitle />
-          {shrugs.map((shrug, index) => (
+        <main className={styles.main}>
+          <FeedTag />
+          {posts.map((post, index) => (
             <article className={styles.shrug} key={index}>
-              <h2 className={styles.title}>{shrug.title}</h2>
+              <h2 className={styles.title}>{post.title}</h2>
               <div className={styles.description}>
-                {shrug.content.split("\n").map((line, i) => (
+                {post.content.split("\n").map((line, i) => (
                   <p key={i}>{line}</p>
                 ))}
               </div>
               <div className={styles.metadataContainer}>
-                <p> {shrug.date} · {shrug.nick} </p>
+                <p className={styles.metadata}> { formatDistanceToNow(new Date(post.timestamp * 1000), { addSuffix: true }) } · someone </p>
               </div>
             </article>
           ))}
-          <div className={styles.footer}>
-            <p className={styles.footerText}> &lt;&lt; newer </p>
-            <p className={styles.footerText}> 2/3 </p>
-            <p className={styles.footerText}> older &gt;&gt; </p>
-          </div>
+        <div className={styles.spacer}></div>
         </main>
       </div>
     </RequireWallet>
