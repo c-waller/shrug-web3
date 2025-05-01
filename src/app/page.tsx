@@ -2,12 +2,12 @@
 
 'use client';
 
-import { connectWallet } from "./lib/wallet";
-import { useRouter } from 'next/navigation';
-import { useState } from "react";
 import styles from "./page.module.css";
 import Link from "next/link";
 import MainButton from "./components/MainButton";
+import { connectWallet } from "./lib/wallet";
+import { useRouter } from 'next/navigation';
+import { useState } from "react";
 
 export default function Home() 
 {

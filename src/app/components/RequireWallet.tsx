@@ -28,6 +28,7 @@ export default function RequireWallet({ children }: RequireWalletProps)
         if (!accounts || accounts.length === 0) 
         {
             router.push("/");
+            return
         } 
         else 
         {
