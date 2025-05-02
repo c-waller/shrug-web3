@@ -1,7 +1,9 @@
 /* global styles */
 
-html {
-  font-size: 13px; /* instead of default 16px */
+html 
+{
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 body
@@ -16,4 +18,10 @@ body
 {
   color: white;
   background: #A8A8A8;
+}
+
+textarea,
+input,
+button {
+  font-family: inherit !important;
 }
