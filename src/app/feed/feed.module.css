@@ -10,7 +10,7 @@
 
 .main
 {
-  padding-top: 40px;
+  padding-top: 2.5rem;
   display: flex;
   flex-direction: column;
 }
@@ -19,11 +19,11 @@
 {
   display: flex;
   flex-direction: column;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
   border-bottom: solid 1.5px #e2e2e2;
-  gap: 15px;
-  width: 700px;
+  gap: 0.9375rem;
+  width: 620px;
 }
 
 .metadataContainer
@@ -55,7 +55,7 @@
 
 .spacer
 {
-  padding-bottom: 60px;
+  padding-bottom: 3.75rem;
 }
 
 .footer
@@ -64,8 +64,8 @@
   width: 700px;
   justify-content: center;
   color: #A8A8A8;
-  padding-top: 40px;
-  padding-bottom: 80px;
+  padding-top: 2.5rem;
+  padding-bottom: 5rem;
   cursor: default;
 }
 

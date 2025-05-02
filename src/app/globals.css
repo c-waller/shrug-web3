@@ -1,5 +1,9 @@
 /* global styles */
 
+html {
+  font-size: 13px; /* instead of default 16px */
+}
+
 body
 {
   background-color: white;

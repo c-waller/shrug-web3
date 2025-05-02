@@ -32,12 +32,12 @@ export default function Home()
   return (
     <div className={styles.container}>
       <Link href="/" className={styles.title}>
-        <h1> ¯\_(ツ)_/¯ shrug </h1>
+        <h1> ¯\_(ツ)_/¯ Shrug </h1>
       </Link>
       <p className={styles.tagline}>
         A quiet corner of the internet for whatever's on your mind.
       </p>
-      <MainButton onClick={handleConnection}> Connect MetaMask </MainButton>
+      <MainButton onClick={handleConnection} className={styles.auth}> Connect MetaMask </MainButton>
     </div>
   );
 }

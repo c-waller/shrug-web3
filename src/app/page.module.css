@@ -6,8 +6,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
   height: 100vh;
+  font-size: 15px;
 }
 
 .title
@@ -21,10 +22,15 @@
 
 .tagline
 {
-  padding-bottom: 20px;
+  padding-bottom: 1.25rem;
 }
 
 .route
 {
   color: #A9A9A9;
+}
+
+.auth
+{
+  font-size: 13px !important;
 }
