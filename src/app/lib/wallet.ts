@@ -1,9 +1,8 @@
 // helper function for wallet authentication
 
-import { BrowserProvider } from "ethers";
 import { getSigner } from "./getSigner";
 
-export async function connectWallet() 
+export async function connectWallet()
 {
     if (typeof window.ethereum === "undefined") // meta mask not installed
     {

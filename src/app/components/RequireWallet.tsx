@@ -1,3 +1,5 @@
+// wrapper component - wrap jsx that you don't want exposed to unauthorized users
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -36,6 +38,6 @@ export default function RequireWallet({ children }: RequireWalletProps)
         }
         setLoading(false);
     }
-    useEffect(() => { checkWallet() });
+    useEffect(() => { checkWallet() }, []);
     return (loading || !walletConnected ) ? null: <> { children } </>;
 }

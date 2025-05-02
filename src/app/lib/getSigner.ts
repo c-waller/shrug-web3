@@ -1,6 +1,7 @@
+import { JsonRpcSigner } from "ethers";
 import { BrowserProvider } from "ethers";
 
-export async function getSigner()
+export async function getSigner(): Promise<JsonRpcSigner | undefined>
 {
   try
   {

@@ -1,18 +1,16 @@
-'use client';
+"use client";
 
 import styles from "./feed.module.css";
 import FeedTag from "../components/FeedTag";
 import RequireWallet from "../components/RequireWallet";
 import shrugFeedABI from "../lib/shrugFeedABI.json";
+import ShrugSkeleton from "../components/ShrugSkeleton";
 import { getSigner } from "../lib/getSigner";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ethers } from "ethers";
 import { formatDistanceToNow } from "date-fns";
 
-const CONTRACT = "0x110b3D933766E8D2518499e146477526241f927E";
-const GATEWAY = process.env.NEXT_PUBLIC_GATEWAY_URL;
-
-type Shrug = 
+type Shrug =
 {
   title: string;
   content: string;
@@ -24,70 +22,96 @@ export default function Feed()
 {
   const [posts, setPosts] = useState<Shrug[]>([]);
   const [loading, setLoading] = useState(true);
+  const [postCount, setPostCount] = useState<number>(0);
+
+  const didRunRef = useRef(false);
 
   useEffect(() => {
+    // DEV STUFF TO PREVENT DOUBLE API CALLS
+    if (didRunRef.current) return;
+    didRunRef.current = true;
     async function fetchPosts() 
     {
       try 
       {
+        // create new contract with user's info
         const signer = await getSigner();
-        const contract = new ethers.Contract(CONTRACT, shrugFeedABI, signer);
-        const postList = await contract.getAllPosts();
+        const contract = new ethers.Contract(
+          process.env.NEXT_PUBLIC_CONTRACT_ADDRESS!,
+          shrugFeedABI,
+          signer
+        );
 
-        if (postList.length === 0) // no posts to display
+        // get post count AND get all posts
+        const count = await contract.getPostCount();
+        setPostCount(Number(count));
+        const postList = await contract.getAllPosts();
+        
+        if (postList.length === 0) // no posts found
         {
           setPosts([]);
           setLoading(false);
           return;
         }
 
-        // grab last 10 posts (newest first)
-        const last10 = [...postList.slice(-10)].reverse();
+        // [post1, post2, ..., postx] <- we need postx as its the newest
+        const reversed = [...postList].reverse();
+        const results: Shrug[] = []; // this will contain the json for the posts in our feed
 
-        const results = await Promise.all(
-          last10.map(async (post: any) => {
-            try 
-            {
-              const res = await fetch(`https://${GATEWAY}/ipfs/${post.cid}`);
-              const json = await res.json();
-              return {
-                title: json.title,
-                content: json.content,
-                timestamp: Number(post.timestamp),
-                cid: post.cid,
-              };
-            } 
-            catch (err) 
-            {
-              console.warn("Failed to fetch CID:", post.cid);
-              return {
-                title: "Unavailable",
-                content: "This post is no longer accessible.",
-                timestamp: Number(post.timestamp),
-                cid: post.cid,
-              };
-            }
-          })
-        );
-        setPosts(results.filter(Boolean) as Shrug[]);
+        for (const post of reversed) 
+        {
+          try 
+          {
+            const res = await fetch(`/api/post/${post.cid}`);
+            const json = await res.json();
+            results.push({
+              title: json.title,
+              content: json.content,
+              timestamp: Number(post.timestamp),
+              cid: post.cid,
+            });
+          } 
+          
+          catch (err) 
+          {
+            console.warn("Failed to fetch CID:", post.cid);
+            results.push({
+              title: "Unavailable",
+              content: "This shrug is no longer available.",
+              timestamp: Number(post.timestamp),
+              cid: post.cid,
+            });
+          }
+          await new Promise((res) => setTimeout(res, 250)); // throttle requests by 250ms
+        }
+        setPosts(results);
       } 
+
       catch (err) 
       {
         console.error("Error loading posts:", err);
       } 
+
       finally 
       {
         setLoading(false);
       }
     }
-    fetchPosts();
+    fetchPosts(); // on mount, load posts
   }, []);
 
-  if (loading) 
+  if (loading) // create page skeleton
   {
     return (
       <RequireWallet>
-        <p className={styles.loading}> Loading posts... </p>
+        <div className={styles.container}>
+          <main className={styles.main}>
+            <FeedTag />
+            {Array.from({ length: 6 }).map((_, i) => (
+              <ShrugSkeleton key={i} />
+            ))}
+          </main>
+        </div>
       </RequireWallet>
     );
   }
@@ -97,21 +121,34 @@ export default function Feed()
       <div className={styles.container}>
         <main className={styles.main}>
           <FeedTag />
-          {posts.map((post, index) => (
-            <article className={styles.shrug} key={index}>
-              <h2 className={styles.title}>{post.title}</h2>
-              <div className={styles.description}>
-                {post.content.split("\n").map((line, i) => (
-                  <p key={i}>{line}</p>
-                ))}
-              </div>
-              <div className={styles.metadataContainer}>
-                <p className={styles.metadata}> { formatDistanceToNow(new Date(post.timestamp * 1000), { addSuffix: true }) } · someone </p>
-              </div>
-            </article>
-          ))}
-        <div className={styles.spacer}></div>
+          {posts.length === 0 ? (
+            <p className={styles.noPostsMessage}>No shrugs have been posted yet.</p>
+          ) : (
+            posts.map((post, index) => (
+              <article className={styles.shrug} key={index}>
+                <h2 className={styles.title}>{post.title}</h2>
+                <div className={styles.description}>
+                  {post.content.split("\n").map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
+                </div>
+                <div className={styles.metadataContainer}>
+                  <p className={styles.metadata}>
+                    {formatDistanceToNow(new Date(post.timestamp * 1000), {
+                      addSuffix: true,
+                    })}{" "}
+                    · someone
+                  </p>
+                </div>
+              </article>
+            ))
+          )}
         </main>
+        <footer className={styles.footer}>
+          <p className={styles.pageNumber}>
+            Viewed { postCount } shrug{postCount !== 1 ? "s" : ""}.
+          </p>
+        </footer>
       </div>
     </RequireWallet>
   );

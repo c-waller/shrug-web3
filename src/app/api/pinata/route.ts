@@ -8,13 +8,13 @@ export async function POST(request: NextRequest)
   try 
   {
     const json = await request.json();
-    const { cid } = await pinata.upload.public.json(json);
+    const { cid } = await pinata.upload.public.json(json); // store cid from pinata
     return NextResponse.json({ cid }, { status: 200 });
   } 
-
-  catch (e) 
+  
+  catch (err) 
   {
-    console.error("Pinata upload error:", e);
+    console.error("Pinata upload error:", err);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

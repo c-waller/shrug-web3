@@ -9,8 +9,6 @@ import { useRef, useState } from "react";
 import { getSigner } from "../lib/getSigner";
 import { ethers } from "ethers";
 
-const ADDRESS = "0x110b3D933766E8D2518499e146477526241f927E"; // contract address
-
 export default function NewShrug() 
 {
   const router = useRouter();
@@ -18,7 +16,7 @@ export default function NewShrug()
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  function autoGrow(e: any) 
+  function autoGrow(e: any) // function to grow the textbox dynamically on user input
   {
     const element = e.target;
     element.style.height = "5px";
@@ -27,7 +25,7 @@ export default function NewShrug()
 
   async function handlePost() 
   {
-    if (!titleRef.current || !contentRef.current) return;
+    if (!titleRef.current || !contentRef.current) return; // in case component isnt mounted
 
     const title = titleRef.current.value.trim();
     const content = contentRef.current.value.trim();
@@ -49,31 +47,29 @@ export default function NewShrug()
         body: JSON.stringify({ title, content }),
       });
       
+      // grab cid from our uploaded content
       const { cid } = await res.json();
       if (!cid)
       {
-        console.log("Failed to get CID from Pinata")
         throw new Error("Failed to get CID from Pinata");
       }
 
-      // call addPost on smart contract
+      // call 'addPost' on smart contract
       const signer = await getSigner();
-      const contract = new ethers.Contract(ADDRESS, shrugFeedABI, signer);
-      const tx = await contract.addPost(cid);
-      
-      await tx.wait();
-      alert("Post submitted!");
+      const contract = new ethers.Contract(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS!, shrugFeedABI, signer);
+      const transaction = await contract.addPost(cid);
+      await transaction.wait(); // wait for transaction to be completed
       router.push("/feed");
     } 
 
     // error while posting
     catch (err) 
     {
-      console.error(err);
+      console.error("Post Error: ", err);
       alert("Something went wrong while posting.");
     } 
 
-    finally 
+    finally
     {
       setSubmitting(false);
     }

@@ -1,11 +1,14 @@
+// 404 error page
+
 "use client"
+
 import Link from 'next/link'
 import styles from "./page.module.css";
 import { usePathname } from 'next/navigation'
 
 export default function NotFound() 
 {
-  const pathname = usePathname();
+  const pathname = usePathname(); // get attempted path
 
   return (
     <div className={styles.container}>
